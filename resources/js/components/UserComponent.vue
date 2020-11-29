@@ -103,7 +103,7 @@
         },
         methods: {
             loadUsers(){
-                // By using Axios es6
+                // By using Axios es63
                 //axios get going to the user then gave us a data {{ data }} this is data function after store them in user
                 axios.get("api/users").then(({ data }) => (this.users = data));
             },
