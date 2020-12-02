@@ -10,14 +10,31 @@ window.Vue = require('vue');
 
 import moment from 'moment';
 import VueProgressBar from 'vue-progressbar';
+import Swal from 'sweetalert2';
 
 import { Form, HasError, AlertError } from 'vform'
 
 window.Form = Form;
+window.Swal = Swal;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 //to access form anywhere
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
 
+window.Toast = Toast;
+// everywhere in the file access to this
+let Fire = new Vue();
+window.Fire = Fire;
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
