@@ -10,8 +10,9 @@ window.Vue = require('vue');
 
 import moment from 'moment';
 import VueProgressBar from 'vue-progressbar';
+import Swal from 'sweetalert2'
 
-import { Form, HasError, AlertError } from 'vform'
+import { Form, HasError, AlertError } from 'vform';
 
 window.Form = Form;
 Vue.component(HasError.name, HasError)
@@ -27,6 +28,25 @@ Vue.use(VueProgressBar, {
   failedColor: 'red',
   height: '2px'
 })
+// for the Sweet alert
+window.Swal = Swal;
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+window.Toast = Toast;
+
+// everywhere in the file access to this
+let Fire = new Vue();
+window.Fire = Fire;
+
 
 const routes = [
     { path: '/', component: require('./components/DashboardComponent.vue').default },
