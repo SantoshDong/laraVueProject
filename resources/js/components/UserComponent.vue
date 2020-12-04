@@ -123,10 +123,10 @@
                         'success'
                         )
                         Fire.$emit('AfterCreate')
-                        this.$progress.finish();
+                        this.$Progress.finish();
                 })
                 .catch(() => {
-                    this.$progress.fail();
+                    this.$Progress.fail();
                 });
             },
                 editModal(user){
